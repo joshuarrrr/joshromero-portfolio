@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Embeddable Tables Compared</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="sss.css" />
+    <!--
+    <link rel="stylesheet" type="text/css" href="http://jlord.github.io/sheetsee.js/assets/style.css" />
+    -->
+    
+    <style>
+        #Pagination {border-top: 1px solid #efefef; margin: 10px 0px; padding-top: 10px; display: inline-block;}
+        #Pagination a {cursor: hand;}
+        .no-pag {color: #acacac; border: none;}
+        .no-pag:hover {color: #acacac;}
+        ta
+        input {border: none; border-bottom: 1px solid #333;margin: 10px 0px; width: 200px; font-size: 16px; padding-bottom: 6px;}
+        .tHeader {padding: 8px; font-family: Helvetica Neue; Helvetica, Arial, sans-serif; cursor: hand;}
+        .tHeader:hover {
+            cursor: pointer;
+        }
+        .photo {display: inline-block; float: left; width: 100px;}
+        #photogrid {overflow: auto;}
+        /*
+        table {
+            border: 1px solid black;
+        }
+        */
+        tbody tr:nth-child(odd) {background-color: #f3f3f3;}
+    </style>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.3.5/tabletop.min.js"></script>
+    <script src="sheetsee.js"></script>
+
+</head>
+<body>
+    <input id="siteTableFilter" type="text" placeholder="Filter by..."></input>
+    <div id="sheetseeTable"></div>
+
+    <script id="tableTemplate" type="text/html">
+        <table>
+        <tr>
+            <th class="tHeader">Tool</th>
+            <th class="tHeader">Data From</th>
+            <th class="tHeader">Responsive</th>
+            <th class="tHeader">Sortable</th>
+            <th class="tHeader">Search</th>
+            <th class="tHeader">Pagination</th>
+            <th class="tHeader">Link</th>
+            <th class="tHeader">GitHub</th>
+        </tr>
+          {{#rows}}
+            <tr>
+                <td>{{tool}}</td>
+                <td>{{datafrom}}</td>
+                <td>{{responsive}}</td>
+                <td>{{sortablecolumns}}</td>
+                <td>{{search}}</td>
+                <td>{{pagination}}</td>
+                <td><a href="{{link}}">Project</a></td>
+                <td><a href="{{githublink}}">GitHub</a></td>
+            </tr>
+          {{/rows}}
+      </table>
+    </script>
+
+    <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var gData;
+        var URL = "1dcyCMszwo576WbZQqeG34KV5SeoOv8_bnSedqkKBnwM";
+
+        Tabletop.init( { key: URL, callback: showData, simpleSheet: true } );
+        function showData(data) {
+            //console.log(data);
+            var tableOptions = {
+                          "data": data,
+                          "pagination": 10,
+                          "tableDiv": "#sheetseeTable",
+                          "filterDiv": "#siteTableFilter",
+                          "templateID": "tableTemplate"
+                          };
+            Sheetsee.makeTable(tableOptions);
+            Sheetsee.initiateTableFilter(tableOptions);
+        }
+    })
+</script>
+</body>
+</html>

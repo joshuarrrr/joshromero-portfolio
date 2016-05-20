@@ -1,0 +1,17 @@
+<%- partial('_partial/head') %>
+<body>
+  <!--[if lt IE 7]>
+    <p class="chromeframe">This site is optimized for modern browsers (IE8 and up). I&rsquo;m sorry if anything looks weird.
+  <![endif]-->
+  <%- partial('_partial/header') %>
+  <div class="container">
+    <div class="content-wrap">
+
+      <section id="main"><%- page.content %></section>
+      
+      <%- partial('_partial/footer') %>
+    </div>
+    <%- partial('_partial/after-footer') %>
+  </div>
+</body>
+</html>

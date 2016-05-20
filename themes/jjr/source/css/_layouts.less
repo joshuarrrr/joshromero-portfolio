@@ -1,0 +1,103 @@
+.content-wrap {
+  width: 50em;
+  margin: 0 auto;
+}
+
+/* media queries */
+
+@media (min-width: 1600px) {
+  body { font-size: 26px; }
+}
+
+@media (max-width: 1100px) {
+  body { font-size: 20px; }
+}
+
+@media (max-width: 1024px) {
+  body { font-size: 18px; }
+}
+
+@media (max-width: 960px) {
+  .content-wrap {
+    width: auto;
+    padding: 0 1em;
+  }
+  .site-header {
+    height: auto;
+
+    .nav-title, nav, .main-nav {
+      display: block;
+      text-align: center;
+      position: static;
+    }
+
+    nav {
+      margin: 0 auto;   
+    }
+
+    .main-nav {
+      border-top: 2px #ddd dashed;
+    }
+  }
+}
+
+@media (max-width: 690px) {
+  .site-header {
+    line-height: 2em;
+
+    .description, .nav-item {
+      font-size: 20px;
+    }
+
+    .description {
+      display: block;
+      border: none;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  .header {
+    margin: 1em 0;
+  }
+  .header h1 {
+    font-size: 1.4em;
+    margin-bottom: 0.6em;
+  }
+  .header .description {
+    font-size: 1em;
+  }
+  .article {
+    margin: 1em 0 2.5em;
+  }
+  .archive {
+    width: 80%;
+    margin: 0 auto;
+  }
+  .archive * {
+    float: none !important;
+    line-height: 1.6 !important;
+    width: auto !important;
+    height: auto !important;
+    text-align: left !important;
+    border: 0 !important;
+    margin: 0 !important;
+  }
+  footer .nav {
+    margin: 1em 0;
+    text-align: center;
+  }
+  footer .about {
+    padding: 0;
+    font-size: 0.9em;
+    padding-top: 1.6em;
+    -webkit-column-count: 1;
+    -moz-column-count: 1;
+    -ms-column-count: 1;
+    column-count: 1;
+  }
+  footer .about p {
+    margin-bottom: 1em;
+  }
+}

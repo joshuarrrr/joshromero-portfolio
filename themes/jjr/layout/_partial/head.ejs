@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <%
+  var title;
+  if (page.title) {
+    title = titlecase(page.title).replace("\\","");
+  }
+
+  if (is_archive() && !is_post()){
+    title = 'Blog';
+
+    if (is_month()){
+      title += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      title += ': ' + page.year;
+    }
+  } else if (is_category()){
+    title = 'Category: ' + page.category;
+  } else if (is_tag()){
+    title = 'Tag: ' + page.tag;
+  }
+  %>
+  <title><% if (title){ %><%= title %> | <%= config.title %><% } else { %><%= config.title %> | <%= config.subtitle %><% } %></title>
+  <meta name="description" content="<%= config.description %>">
+  <meta name="viewport" content="width=device-width">
+  <%- open_graph({twitter_id: theme.twitter, google_plus: theme.google_plus, fb_admins: theme.fb_admins, fb_app_id: theme.fb_app_id}) %>
+  <% if (theme.rss){ %>
+    <link rel="alternative" href="<%- theme.rss %>" title="<%= config.title %>" type="application/atom+xml">
+  <% } %>
+  <% if (theme.favicon){ %>
+    <link rel="icon" href="<%- theme.favicon %>">
+  <% } %>
+  <%- css('css/main') %>
+  <script src="/js/vendor/modernizr-2.8.0.min.js"></script>
+  <%- partial('google-analytics') %>
+</head>
+<body>
+  <!--[if lt IE 7]>
+    <p class="chromeframe">This site is optimized for modern browsers (IE8 and up). I&rsquo;m sorry if anything looks weird.
+  <![endif]-->
+  <%- partial('_partial/header') %>
+  <div class="content-wrap">
+    <div class="container">

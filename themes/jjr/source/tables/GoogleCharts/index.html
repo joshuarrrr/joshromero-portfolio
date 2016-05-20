@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Embeddable Tables Compared</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        //google visualization libs we need
+        google.load('visualization', '1.1', {packages: ['corechart']});
+        //we need to wait till all the google libraries are ready, then fire the callback
+        google.setOnLoadCallback(drawChart);
+
+        function drawChart() {
+            /*var query = new google.visualization.Query(
+                'https://docs.google.com/a/ieee.org/spreadsheets/d/1dcyCMszwo576WbZQqeG34KV5SeoOv8_bnSedqkKBnwM/edit#gid=0'); */
+            var query = new google.visualization.Query('http://spreadsheets.google.com/tq?key=1dcyCMszwo576WbZQqeG34KV5SeoOv8_bnSedqkKBnwM&transpose=0&headers=1&gid=0&pub=1');
+
+            query.send(handleQueryResponse);
+        }
+
+        function handleQueryResponse(response) {
+            if (response.isError()) {
+                alert('Error in query: ' + response.getMessage() + ' ' + response.getDetailedMessage());
+                return;
+            }
+
+            var data = response.getDataTable();
+            console.log(data)
+
+            var table = new google.visualization.Table(document.getElementById('table_div'));
+            table.draw(data, {showRowNumber: true});
+            
+        }
+    </script>
+
+</head>
+<body>
+    <div id="table_div"></div>
+</body>
+</html>

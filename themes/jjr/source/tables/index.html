@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Embeddable Tables Compared</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <h1>Embeddable Tables Compared</h1>
+    <h2>Responsive Table Generator</h2>
+    <div id="rtg-iframe-container"></div>
+
+    <h2>Tabletop + Datatables</h2>
+    <div id="datatables-iframe-container"></div>
+
+    <script src="RTG/pym.js"></script>
+    <script type="text/javascript">
+        (function() {
+        var pymParent1 = new pym.Parent(
+            'rtg-iframe-container',
+            'RTG/index.html', {});
+        var pymParent2 = new pym.Parent(
+            'datatables-iframe-container',
+            'Datatables/index.html', {});
+        }());
+    </script>
+
+    <h2>Sheetsee.js</h2>
+    <div id="sheetsee-iframe-container">
+    <iframe src="Sheetsee/index.html" frameborder="0" width="100%" height="220"></iframe></div>
+
+    <iframe src="http://cf.datawrapper.de/UwZOc/1/" frameborder="0" allowtransparency="true" allowfullscreen="allowfullscreen" webkitallowfullscreen="webkitallowfullscreen" mozallowfullscreen="mozallowfullscreen" oallowfullscreen="oallowfullscreen" msallowfullscreen="msallowfullscreen" width="100%" height="417"></iframe>
+
+    <h2>Thunderdome.js</h2>
+    <div id="datatables-iframe-container">
+    <iframe src="thunderdome/examples/justtable.html" frameborder="0" width="100%" height="400"></iframe></div>
+
+</body>
+</html>

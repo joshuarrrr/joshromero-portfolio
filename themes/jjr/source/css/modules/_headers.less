@@ -1,0 +1,124 @@
+/* #Header Styles
+  ================================================== */
+  
+  .site-header {
+    width: 100%;
+    height: 38px;
+    line-height: 38px;
+    background: #595959;
+
+    nav {
+      right: 0;
+    }
+
+    .nav-title {
+      left: 0;
+    }
+
+    nav, .nav-title {
+      line-height: inherit; 
+      display: inline-block;
+      margin: 0 10px;
+      font-size: 28px;
+      color: #ddd;
+      position: absolute;
+    }
+
+    .name {
+      display: inline;
+    }
+
+    .name a, .name a:visited {
+      color: #ddd;
+      border-bottom: none;
+    }
+
+    .name a:hover, .name a:focus {
+      text-decoration: underline;
+    }
+
+    .description {
+      font-size: 21px;
+      text-transform: uppercase;
+      display: inline;
+      text-align: right;
+      border-left: 2px #ddd solid;
+      padding-left: 10px;
+      margin-left: 5px;
+    }
+
+    .main-nav {
+      display: inline;
+      text-align: right;
+      margin: 0;
+    }
+
+    .main-nav a, .main-nav a:visited { 
+      color: inherit; 
+      border-bottom: none;
+    }
+
+    .nav-item {
+      font-size: 21px;
+      line-height: inherit;
+      text-transform: uppercase;
+      margin: 0 10px;
+      display: inline;
+    }
+
+    .nav-item a:hover, .nav-item a:focus, .nav-item a.active {
+      border-top: 2px #ddd solid;
+      text-decoration: none;
+      border-bottom: none;
+    }
+  }  
+
+/* page header */
+
+.header {
+  margin: 3em 0 5em;
+}
+
+.header h1 {
+  font-size: 2.6em;
+  text-align: center;
+  font-weight: 700;
+  margin: 0;
+}
+
+.header a, .header a:hover {
+  text-decoration: none;
+  color: #171717;
+}
+
+.header .author, .header .pubdate {
+  font-family: @display-font;
+  font-variant: small-caps;
+  text-transform: lowercase;
+  text-rendering: auto;
+  text-align: center;
+  font-weight: 400;
+  letter-spacing: 1px;
+
+  span {
+    font-size: .8em;
+  }
+}
+
+.header .description {
+  font-size: 1.2em;
+  font-style: italic;
+  text-align: center;
+  margin-top: -0.3em;
+}
+
+.article-detail > header h1 {
+  font-size: 2.5em;
+  font-style: italic;
+  font-weight: 400;
+  margin-bottom: -0.2em;
+}
+
+.article-detail .post-title {
+  margin-bottom: 3em;
+}

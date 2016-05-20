@@ -1,0 +1,8 @@
+<%- partial('_partial/head',{navitem: "/blog"}) %>
+
+    <div class="article-detail">
+        <%- partial('_partial/article', {post: page, index: false}) %>
+    </div>
+
+<%- partial('_partial/footer',{index: false}) %>
+<%- partial('_partial/after-footer') %>

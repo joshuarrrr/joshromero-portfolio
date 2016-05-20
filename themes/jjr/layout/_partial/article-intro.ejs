@@ -1,0 +1,36 @@
+<article class="article intro">
+    <header>
+        <p class="date">
+            <span><%- partial('post/date', {class_name: 'article-date', date_format: null}) %></span>
+            </p><h2><a href="<%- config.root %><%- post.path %>"><%- post.typTitle %></a></h2>
+        <p></p>
+    </header>
+
+    <section class="content" itemprop="articleBody">
+        <% if (post.excerpt && index){ %>
+            <%- post.excerpt %>
+            <% if (theme.excerpt_link){ %>
+                <p class="more">
+                    <a class="no-underline" href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+                </p>
+            <% } %>
+            <% } else { %>
+            <%- post.content %>
+        <% } %>
+    </section>
+
+    <% if (post.tags && post.tags.length) { %>
+    <div class="tags">
+        Tags: <%- partial('post/tag') %><% if (post.categories){ %>
+            <span> in </span><%- partial('post/category') %>
+        <% } %>
+    </div>
+    <% } else { %>
+        <% if (post.categories && post.categories.length) { %>
+        <div class="tags">
+            Category: <%- partial('post/category') %>  
+        </div>
+        <% } %>
+    <% } %>
+
+</article>

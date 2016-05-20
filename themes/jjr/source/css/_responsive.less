@@ -1,0 +1,71 @@
+@import '_grid.less';
+
+
+//////////
+// GRID //
+//////////
+
+// Specify the number of columns and set column and gutter widths
+@columns: 12;
+@column-width: 60;
+@gutter-width: 20;
+
+// Remove the definition below for a pixel-based layout
+@total-width: 100%;
+
+
+////////////
+// LAYOUT //
+////////////
+
+.full.column {
+  .column(12);
+}
+
+.two-thirds.column {
+  .column(8);
+}
+
+.one-third.column {
+  .column(4);
+}
+
+.one-half.column {
+  .column(6);
+}
+
+.one-quarter.column {
+  .column(3);
+}
+
+.three-quarters.column {
+  .column(9);
+}
+
+.archive-mini {
+  .column(2);
+}
+
+.archive-rest {
+  .column(10);
+}
+
+.med {
+  .column(3);
+}
+
+.sm {
+  .column(1.5);
+}
+
+.row {
+  clear: both;
+}
+
+@media (max-width: 690px) {
+
+  .full.column, .two-thirds.column, .one-third.column, .one-half.column, .one-quarter.column, .three-quarters.column {
+    .column(12);
+  }
+
+}

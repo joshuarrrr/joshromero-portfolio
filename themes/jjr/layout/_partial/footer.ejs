@@ -1,0 +1,14 @@
+</div>
+<footer id="footer">
+	<% if (theme.sidebar === 'bottom'){ %>
+    	<%- partial('_partial/sidebar') %>
+  	<% } %>
+  	<% if (!index) { %>
+	  <section class="about">
+		  <%- addsection('about_blurb') %>
+    </section>
+    <% } %>
+    <section class="copy">
+         <p>&copy; <%= date(new Date(), 'YYYY') %> <%= config.author || config.title %> &mdash; Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a></p>
+     </section> 
+</footer>

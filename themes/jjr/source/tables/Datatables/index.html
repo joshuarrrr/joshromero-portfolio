@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Embeddable Tables Compared</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/responsive/1.0.1/css/dataTables.responsive.css" />
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/tabletop.js/1.3.5/tabletop.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script src="//cdn.datatables.net/responsive/1.0.1/js/dataTables.responsive.js"></script>
+
+</head>
+<body>
+    <noscript>
+        <div id="noscript_note">You must have JavaScript enabled to view this page.</div>
+    </noscript>
+    <div id="Datatable"></div>
+    <script src="pym.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        var URL = "1dcyCMszwo576WbZQqeG34KV5SeoOv8_bnSedqkKBnwM";
+        var childFrame = new pym.Child();
+
+        Tabletop.init( { key: URL, callback: writeTableWith, simpleSheet: true } );
+
+                   
+        // create table headers
+        function createTableColumns(){
+
+            /* swap out the properties of mDataProp & sTitle to reflect
+            the names of columns or keys you want to display.
+            Remember, tabletop.js strips out spaces from column titles, which
+            is what happens with the More Info column header */
+
+            var tableColumns =   [
+                {'data': 'tool', 'title': 'Tool', 'className': 'dt-center'},
+                {'data': 'datafrom', 'title': 'Data From', 'className': 'dt-center'},
+                {'data': 'responsive', 'title': 'Responsive', 'className': 'dt-center'},
+                {'data': 'sortablecolumns', 'title': 'Sortable', 'className': 'dt-center'},
+                {'data': 'search', 'title': 'Searchable', 'className': 'dt-center'},
+                {'data': 'pagination', 'title': 'Pagination', 'className': 'dt-center'},
+                {
+                    'data': 'link',
+                    'render': function(data, type, full, meta) {
+                        return '<a href="'+data+'">Project</a>';
+                    }, 
+                    'title': 'Link', 
+                    'className': 'dt-center all'
+                },
+                {
+                    'data': 'githublink',
+                    'render': function(data, type, full, meta) {
+                        return '<a href="'+data+'">GitHub</a>';
+                    }, 
+                    'title': 'GitHub', 
+                    'className': 'dt-center all'
+                }
+            ];
+            return tableColumns;
+        }
+
+        // create the table container and object
+        function writeTableWith(dataSource){
+            //console.log(dataSource);
+            //$('#Datatable').html('<table cellpadding="0" cellspacing="0" border="0" class="display table table-bordered table-striped" id="data-table-container"></table>');
+            $('#Datatable').html('<table id="data-table-container" class="display" cellspacing="0" width="100%"></table>');
+            var table = $('#data-table-container').dataTable({
+                'data': dataSource,
+                'columns': createTableColumns(),
+                'responsive': true,
+                stateSave: true,
+                paging: false,
+                info: false
+            });
+            childFrame.sendHeightToParent();
+        };
+    })
+</script>
+</body>
+</html>

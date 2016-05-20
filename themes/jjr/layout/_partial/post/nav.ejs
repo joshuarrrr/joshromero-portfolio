@@ -1,0 +1,33 @@
+<% if (post.prev || post.next){ %>
+<nav id="article-nav" class="bottom-nav">
+  <% if (post.next){ %>
+    <a href="<%- config.root %><%- post.next.path %>" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">&laquo Previous:</strong><br>
+      <div class="article-nav-title">
+        <% if (post.next.title){ %>
+          <%- post.next.typTitle %>
+        <% } else { %>
+          (no title)
+        <% } %> 
+      </div>
+    </a>
+  <% } %>
+  <% if (post.prev){ %>
+    <a href="<%- config.root %><%- post.prev.path %>" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Next: &raquo</strong><br>
+      <div class="article-nav-title">
+        <% if (post.prev.title){ %>
+          <%- post.prev.typTitle %>
+        <% } else { %>
+          (no title)
+        <% } %> 
+      </div>
+    </a>
+  <% } %>
+  <div class="article-nav-archive">
+    <a href="<%- config.root %><%- config.archive_dir %>" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">All Posts</strong>
+    </a>
+  </div>
+</nav>
+<% } %>

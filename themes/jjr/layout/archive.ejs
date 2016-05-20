@@ -1,0 +1,9 @@
+<%- partial('_partial/head',{navitem: "/blog"}) %>
+    
+    <div class="article-detail">
+        <%- partial('_partial/archive', {pagination: config.archive, index: true}) %>
+    </div>
+      
+<%- partial('_partial/footer',{index: false}) %>
+<%- partial('_partial/after-footer') %>
+

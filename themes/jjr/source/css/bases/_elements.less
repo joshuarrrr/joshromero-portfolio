@@ -1,0 +1,97 @@
+h1, h2, h3, h4, h5, h6, p, body, a, img, ul, ol, blockquote, pre {
+  margin: 0; padding: 0; border: 0; 
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: @display-font;
+}
+
+body {
+  font-family: @body-font;
+  font-size: @base-font-size;
+  line-height: @base-line-height;
+  background-color: @bg-color;
+  background: @bg;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased; /* Fix for webkit rendering */
+  -webkit-text-size-adjust: 100%;
+}
+
+body, a {
+  color: @text-color;
+}
+
+a, a:visited { 
+  color: @link-color;
+  text-decoration: none;
+  outline: 0;
+  border-bottom: @link-underline; 
+}
+a:hover, a:focus { 
+  color: @link-hover-color;
+  border-bottom: @link-hover-underline;
+}
+
+p {
+  margin-bottom: @base-line-height * 1em;
+}
+
+pre {
+  font-size: 0.9em;
+  overflow: auto;
+  background: @bg-color-1;
+  border: 1px dashed @line-color;
+  border-radius: 0.25em;
+  margin-bottom: 1.8em;
+  padding: 1em;
+}
+
+h1 {
+  font-size: 2em;
+  margin-bottom: 1em;
+}
+
+h2 {
+  font-size: 1.2em;
+  font-weight: 400;
+  line-height: 1.43;
+  margin-bottom: 1.35em;
+}
+
+h3 {
+  font-style: italic;
+  text-align: center;
+  font-weight: 400;
+  font-size: 1.4em;
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
+ol, ul {
+  margin: 0 1.4em 1.4em 2.4em;
+}
+
+ol ol, ol ul, ul ul, ul ol {
+  margin-bottom: 0;
+}
+
+li {
+  margin-bottom: 0.5em;
+}
+
+blockquote {
+  margin: 1.2em 3em;
+  padding-left: 1em;
+  font-style: italic;
+}
+
+hr {
+  border: 0;
+  border-top: 1px dashed @line-color;
+  height: 0;
+  margin: 0.8em 0 1.4em; 
+}
+
+img {
+  max-width: 100%;
+}
