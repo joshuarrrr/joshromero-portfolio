@@ -1,0 +1,36 @@
+.leaflet-container, .info, .leaflet-container h2 {
+	font-family: "pt_sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+} 
+
+.leaflet-container h2 {
+	margin: 0;
+	font-weight: bold;
+}
+
+.leaflet-control-search .search-tooltip {
+	margin: 0;
+}
+
+.blue {
+	color: rgba(121,175,210,1.0);
+}
+
+.green {
+	color: rgba(51,160,44,1.0);
+}
+
+.orange {
+	color: rgba(255,127,0,1.0);
+}
+
+.red {
+	color: rgba(227,26,28,1.0);
+}
+
+.stats-table {
+	width: 100%;
+}
+
+.number-col {
+	text-align: right;
+}
