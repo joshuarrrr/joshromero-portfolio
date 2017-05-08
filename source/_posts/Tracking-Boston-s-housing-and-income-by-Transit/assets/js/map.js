@@ -1,7 +1,25 @@
 var highlightLayer;
+var dispatch = d3.dispatch('stopSelect');
+
+var classify = function(str) {
+    return str.toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start of text
+        .replace(/-+$/, '');            // Trim - from end of text
+};
+
+var colors = {
+    blue: "#007DBE",
+    green: "#008F4F",
+    orange: "#E88A28",
+    red: "#D23934"
+};
 
 function highlightFeature(e) {
     highlightLayer = e.target;
+    dispatch.call('stopSelect', highlightLayer.feature.properties);
     highlightLayer.openPopup();
 }
 L.ImageOverlay.include({
@@ -28,6 +46,31 @@ function determineSize() {
 }
 
 determineSize();
+
+if ( isMobile ) {
+    d3.selectAll(".hover-instruction").text("Touch");
+}
+if ( isDesktop ) {
+    d3.select("#map").style('height', 600 + 'px');
+}
+if ( isHuge ) {
+    d3.select("#map").style('height', 700 + 'px');
+}
+
+if (!String.prototype.includes) {
+  String.prototype.includes = function(search, start) {
+    'use strict';
+    if (typeof start !== 'number') {
+      start = 0;
+    }
+    
+    if (start + search.length > this.length) {
+      return false;
+    } else {
+      return this.indexOf(search, start) !== -1;
+    }
+  };
+}
 
 
 var center = new L.LatLng(42.3171, -71.1046);
@@ -187,7 +230,7 @@ function style_Lines2(feature) {
             return {
                 pane: 'pane_Lines2',
                 opacity: 1,
-                color: 'rgba(31,120,180,1.0)',
+                color: colors.blue,
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -199,7 +242,7 @@ function style_Lines2(feature) {
             return {
                 pane: 'pane_Lines2',
                 opacity: 1,
-                color: 'rgba(51,160,44,1.0)',
+                color: colors.green,
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -211,7 +254,7 @@ function style_Lines2(feature) {
             return {
                 pane: 'pane_Lines2',
                 opacity: 1,
-                color: 'rgba(255,127,0,1.0)',
+                color: colors.orange,
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -223,7 +266,7 @@ function style_Lines2(feature) {
             return {
                 pane: 'pane_Lines2',
                 opacity: 1,
-                color: 'rgba(227,26,28,1.0)',
+                color: colors.red,
                 dashArray: '',
                 lineCap: 'square',
                 lineJoin: 'bevel',
@@ -258,8 +301,8 @@ function pop_Stops3(feature, layer) {
         },
         mouseover: highlightFeature,
     });
-    var popupContent = '<div><h2 class="' + feature.properties['LINE'].toLowerCase().replace(/\//g, '-') + '">' + (feature.properties['STATION'] !== null ? Autolinker.link(String(feature.properties['STATION'])) : '') + '</h2>\
-                    <div class="' + feature.properties['LINE'].toLowerCase().replace(/\//g, '-') + '">' + (feature.properties['ROUTE'] !== null ? Autolinker.link(String(feature.properties['ROUTE'])) : '') + '</div>\
+    var popupContent = '<div><h2 class="' + classify(feature.properties['LINE']) + '">' + (feature.properties['STATION'] !== null ? Autolinker.link(String(feature.properties['STATION'])) : '') + '</h2>\
+                    <div class="' + classify(feature.properties['LINE']) + '">' + (feature.properties['ROUTE'] !== null ? Autolinker.link(String(feature.properties['ROUTE'])) : '') + '</div>\
                     <table class="stats-table">\
                     <tr>\
                         <th>Distance</th>\
@@ -298,7 +341,7 @@ function style_Stops3(feature) {
                 lineJoin: 'miter',
                 weight: 2.0,
                 fillOpacity: 1,
-                fillColor: 'rgba(121,175,210,1.0)',
+                fillColor: colors.blue,
             }
             break;
         case 'BLUE/GREEN':
@@ -306,7 +349,7 @@ function style_Stops3(feature) {
                 pane: 'pane_Stops3',
                 radius: 6.0,
                 opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
+                color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
@@ -320,7 +363,7 @@ function style_Stops3(feature) {
                 pane: 'pane_Stops3',
                 radius: 6.0,
                 opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
+                color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
@@ -340,7 +383,7 @@ function style_Stops3(feature) {
                 lineJoin: 'miter',
                 weight: 2.0,
                 fillOpacity: 1,
-                fillColor: 'rgba(51,160,44,1.0)',
+                fillColor: colors.green,
             }
             break;
         case 'GREEN/ORANGE':
@@ -348,7 +391,7 @@ function style_Stops3(feature) {
                 pane: 'pane_Stops3',
                 radius: 6.0,
                 opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
+                color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
@@ -362,7 +405,7 @@ function style_Stops3(feature) {
                 pane: 'pane_Stops3',
                 radius: 6.0,
                 opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
+                color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
@@ -382,7 +425,7 @@ function style_Stops3(feature) {
                 lineJoin: 'miter',
                 weight: 2.0,
                 fillOpacity: 1,
-                fillColor: 'rgba(255,127,0,1.0)',
+                fillColor: colors.orange,
             }
             break;
         case 'ORANGE/RED':
@@ -390,7 +433,7 @@ function style_Stops3(feature) {
                 pane: 'pane_Stops3',
                 radius: 6.0,
                 opacity: 1,
-                color: 'rgba(0,0,0,1.0)',
+                color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
                 lineCap: 'butt',
                 lineJoin: 'miter',
@@ -410,7 +453,7 @@ function style_Stops3(feature) {
                 lineJoin: 'miter',
                 weight: 2.0,
                 fillOpacity: 1,
-                fillColor: 'rgba(227,26,28,1.0)',
+                fillColor: colors.red,
             }
             break;
     }
