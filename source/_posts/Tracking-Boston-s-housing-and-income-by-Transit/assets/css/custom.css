@@ -1,6 +1,43 @@
-.leaflet-container, .info, .leaflet-container h2 {
+#map {
+	margin-bottom: 40px;
+	max-height: 90vh;
+}
+
+.instructions, .pre-map #map-controls {
+	margin-bottom: .5em;
+	font-style: italic;
+    font-size: .8em;
+}
+
+.leaflet-container #map-controls {
+	padding: 6px 8px;
+    font: inherit;
+    background: white;
+    background: rgba(255,255,255,0.85);
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    border-radius: 5px;
+}
+
+.methods-link {
+	display: block;
+	text-align: right;
+	font-size: .8em;
+}
+
+// #map-controls select {
+// 	font-size: inherit;
+// 	font-style: inherit;
+// }
+.leaflet-container, .info, .leaflet-container h2, #map-controls {
 	font-family: "pt_sans", "HelveticaNeue", "Helvetica Neue", Helvetica, Arial, sans-serif;
-} 
+	font-size: 12px;
+}
+
+@media (min-width: 690px) {
+	.leaflet-container, .info, .leaflet-container h2, #map-controls {
+		font-size: 14px;
+	}
+}
 
 .leaflet-container h2 {
 	margin: 0;
@@ -11,24 +48,61 @@
 	margin: 0;
 }
 
+.leaflet-touch .leaflet-control-search {
+	box-shadow: none;
+	border: 2px solid rgba(0,0,0,0.2);
+    background-clip: padding-box;
+}
+
+
+.leaflet-touch .leaflet-control-search .search-button {
+	background: url(../images/search-icon.png) no-repeat 4px 4px #fff;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+}
+
+.leaflet-touch .leaflet-control-search .search-input {
+    margin: 5px 0 5px 3px;
+}
+
+.leaflet-touch .leaflet-control-search .search-cancel {
+	right: 30px;
+    margin: 5px 0;
+    background: url(../images/search-icon.png) no-repeat 0 -46px #fff;
+    background-color: white;
+    border-bottom: none;
+    width: 20px;
+    height: 20px;
+}
+
 .blue {
-	color: rgba(121,175,210,1.0);
+	// color: rgba(121,175,210,1.0);
+	color: #007DBE;
 }
 
 .green {
-	color: rgba(51,160,44,1.0);
+	// color: rgba(51,160,44,1.0);
+	color: #008F4F;
 }
 
 .orange {
-	color: rgba(255,127,0,1.0);
+	// color: rgba(255,127,0,1.0);
+	color: #E88A28;
 }
 
 .red {
-	color: rgba(227,26,28,1.0);
+	// color: rgba(227,26,28,1.0);
+	color: #D23934;
 }
 
 .stats-table {
 	width: 100%;
+}
+
+.stats-table td {
+    padding: 1px 5px;
+    white-space: nowrap;
 }
 
 .number-col {
