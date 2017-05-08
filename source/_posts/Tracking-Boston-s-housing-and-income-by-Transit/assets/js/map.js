@@ -328,12 +328,38 @@ function pop_Stops3(feature, layer) {
     layer.bindPopup(popupContent, { maxWidth: 234 });
 }
 
+// var rscale = d3.scaleLinear()
+//     .range([2,20])
+//     .domain(d3.extent(json_Stops3.features, function(d) {
+//         return +d.properties.medIncCalc;
+//     }));
+// var sizeByAttr = 'medIncCalc';
+// var sizeByAttr = 'eighth_mic';
+// var sizeByAttr = 'eighth_mrc';
+
+var metrics = {
+    "eighth_mile": {income: "eighth_mic", rent: "eighth_mrc", home: "eighth_mhc"},
+    "300_ft": {income: "medIncCalc", rent: "MedRenCalc", home: "MedHomCalc"}
+};
+
+var sizeByAttr = 'eighth_mhc';
+json_Stops3.features.sort(function (a,b) { return b.properties[sizeByAttr] - a.properties[sizeByAttr]; });
+
+var rscale = d3.scaleSqrt()
+    .range([0,15])
+    .domain([0,d3.max(json_Stops3.features, function(d) {
+        return +d.properties[sizeByAttr];
+    })]);
+
+// console.log(rscale(40654));
+
 function style_Stops3(feature) {
     switch (feature.properties['LINE']) {
         case 'BLUE':
             return {
                 pane: 'pane_Stops3',
-                radius: 4.0,
+                radius: rscale(areaAttr),
+                // radius: 4,
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
@@ -347,7 +373,8 @@ function style_Stops3(feature) {
         case 'BLUE/GREEN':
             return {
                 pane: 'pane_Stops3',
-                radius: 6.0,
+                // radius: 6.0,
+                radius: rscale(areaAttr),
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
@@ -361,7 +388,8 @@ function style_Stops3(feature) {
         case 'BLUE/ORANGE':
             return {
                 pane: 'pane_Stops3',
-                radius: 6.0,
+                // radius: 6.0,
+                radius: rscale(areaAttr),
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
@@ -375,7 +403,8 @@ function style_Stops3(feature) {
         case 'GREEN':
             return {
                 pane: 'pane_Stops3',
-                radius: 4.0,
+                // radius: 4.0,
+                radius: rscale(areaAttr),
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
@@ -389,7 +418,8 @@ function style_Stops3(feature) {
         case 'GREEN/ORANGE':
             return {
                 pane: 'pane_Stops3',
-                radius: 6.0,
+                // radius: 6.0,
+                radius: rscale(areaAttr),
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
@@ -403,7 +433,8 @@ function style_Stops3(feature) {
         case 'GREEN/RED':
             return {
                 pane: 'pane_Stops3',
-                radius: 6.0,
+                // radius: 6.0,
+                radius: rscale(areaAttr),
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
@@ -417,7 +448,8 @@ function style_Stops3(feature) {
         case 'ORANGE':
             return {
                 pane: 'pane_Stops3',
-                radius: 4.0,
+                // radius: 4.0,
+                radius: rscale(areaAttr),
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
@@ -431,7 +463,8 @@ function style_Stops3(feature) {
         case 'ORANGE/RED':
             return {
                 pane: 'pane_Stops3',
-                radius: 6.0,
+                // radius: 6.0,
+                radius: rscale(areaAttr),
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
@@ -445,7 +478,8 @@ function style_Stops3(feature) {
         case 'RED':
             return {
                 pane: 'pane_Stops3',
-                radius: 4.0,
+                // radius: 4.0,
+                radius: rscale(areaAttr),
                 opacity: 1,
                 color: 'rgba(255,255,255,1.0)',
                 dashArray: '',
