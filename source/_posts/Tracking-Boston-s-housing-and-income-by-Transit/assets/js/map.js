@@ -13,7 +13,9 @@ var metrics = {
     "300_ft": {income: "medIncCalc", rent: "MedRenCalc", home: "MedHomCalc"}
 };
 
-var sizeByAttr = 'eighth_mhc';
+var sizeByAttr = 'eighth_mic';
+var buffer =  "eighth_mile";
+var metric = "income";
 
 var isMobile = false;
 var isDesktop = false;
@@ -311,24 +313,24 @@ function pop_Stops3(feature, layer) {
                     <div class="' + classify(feature.properties['LINE']) + '">' + (feature.properties['ROUTE'] !== null ? Autolinker.link(String(feature.properties['ROUTE'])) : '') + '</div>\
                     <table class="stats-table">\
                     <tr>\
-                        <th>Distance</th>\
-                        <th class="number-col">300 ft</th>\
-                        <th class="number-col">1/8 mile</th>\
-                    </tr>\
-                    </tr>\
-                        <td>Income</td>\
-                        <td class="number-col">' + (feature.properties['medIncCalc'] !== null ? '$' + Autolinker.link(feature.properties['medIncCalc'].toLocaleString()) : '-') + '</td>\
-                        <td class="number-col">' + (feature.properties['eighth_mic'] !== null ? '$' + Autolinker.link(feature.properties['eighth_mic'].toLocaleString()) : '-') + '</td>\
+                        <th>Area Radius:</th>\
+                        <th class="number-col ' + (buffer == "eighth_mile" ? "active" : "") + '">1/8 mile</th>\
+                        <th class="number-col ' + (buffer == "300_ft" ? "active" : "") + '">300 ft</th>\
                     </tr>\
                     <tr>\
-                        <td>Gross Rent</td>\
-                        <td class="number-col">' + (feature.properties['MedRenCalc'] !== null ? '$' + Autolinker.link(feature.properties['MedRenCalc'].toLocaleString()) : '-') + '</td>\
-                        <td class="number-col">' + (feature.properties['eighth_mrc'] !== null ? '$' + Autolinker.link(feature.properties['eighth_mrc'].toLocaleString()) : '-') + '</td>\
+                        <td class="' + (metric === "income" ? "active" : "") + '">Income</td>\
+                        <td class="number-col ' + (metric === "income" && buffer === "eighth_mile" ? "active" : "") + '">' + (feature.properties['eighth_mic'] !== null ? '$' + Autolinker.link(feature.properties['eighth_mic'].toLocaleString()) : '-') + '</td>\
+                        <td class="number-col ' + (metric === "income" && buffer === "300_ft" ? "active" : "") + '">' + (feature.properties['medIncCalc'] !== null ? '$' + Autolinker.link(feature.properties['medIncCalc'].toLocaleString()) : '-') + '</td>\
                     </tr>\
                     <tr>\
-                        <td>House Value</td>\
-                        <td class="number-col">' + (feature.properties['MedHomCalc'] !== null ? '$' + Autolinker.link(feature.properties['MedHomCalc'].toLocaleString()) : '-') + '</td>\
-                        <td class="number-col">' + (feature.properties['eighth_mhc'] !== null ? '$' + Autolinker.link(feature.properties['eighth_mhc'].toLocaleString()) : '-') + '</td>\
+                        <td class="' + (metric === "rent" ? "active" : "") + '">Gross Rent</td>\
+                        <td class="number-col rent  ' + (metric === "rent" && buffer === "eighth_mile" ? "active" : "") + '">' + (feature.properties['eighth_mrc'] !== null ? '$' + Autolinker.link(feature.properties['eighth_mrc'].toLocaleString()) : '-') + '</td>\
+                        <td class="number-col rent  ' + (metric === "rent" && buffer === "300_ft" ? "active" : "") + '">' + (feature.properties['MedRenCalc'] !== null ? '$' + Autolinker.link(feature.properties['MedRenCalc'].toLocaleString()) : '-') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td class="' + (metric === "home" ? "active" : "") + '">Home Value</td>\
+                        <td class="number-col home  ' + (metric === "home" && buffer === "eighth_mile" ? "active" : "") + '">' + (feature.properties['eighth_mhc'] !== null ? '$' + Autolinker.link(feature.properties['eighth_mhc'].toLocaleString()) : '-') + '</td>\
+                        <td class="number-col home  ' + (metric === "home" && buffer === "300_ft" ? "active" : "") + '">' + (feature.properties['MedHomCalc'] !== null ? '$' + Autolinker.link(feature.properties['MedHomCalc'].toLocaleString()) : '-') + '</td>\
                     </tr>\
                 </table>';
     layer.bindPopup(popupContent, {
@@ -363,7 +365,7 @@ function style_Stops3(feature) {
     //     .range(d3.range(5))
     //     .domain()
     // console.log(rscale(+feature.properties.medIncCalc));
-    
+
 
     switch (feature.properties['LINE']) {
         case 'BLUE':
@@ -644,18 +646,18 @@ function changeMetric(metric) {
 
 var metricControlBox = 
     '<div id="map-controls">\
-        Size stops by \
+        Size stations by \
         <select name="metric" id="metric" class="control">\
             <option value="income">median household income</option>\
             <option value="rent">median gross rent</option>\
             <option value="home">median home value</option>\
         </select>\
-        in the area \
+        of area \
         <select name="buffer" id="buffer" class="control">\
             <option value="eighth_mile">1/8 mile</option>\
             <option value="300_ft">300 ft</option>\
         </select>\
-        from stop\
+        away\
         <div class="methods-link"><a href="#methods">How was this calculated?</a></div>\
     </div>';
 
@@ -677,6 +679,9 @@ else {
     };
     metricControls.addTo(map);
 }
+
+metric = d3.select("#metric").property("value");
+buffer = d3.select("#buffer").property("value");
 
 setBounds();
 if (map.hasLayer(layer_Stops3)) {
@@ -710,8 +715,8 @@ searchControl.on('search:locationfound', function(e) {
 map.addControl( searchControl );
 
 d3.selectAll("#map-controls select").on("change", function() {
-    var metric = d3.select("#metric").property("value");
-    var buffer = d3.select("#buffer").property("value");
+    metric = d3.select("#metric").property("value");
+    buffer = d3.select("#buffer").property("value");
 
     changeMetric(metrics[buffer][metric]);
 })
@@ -816,7 +821,7 @@ d3.selectAll("#map-controls select").on("change", function() {
 //             });
 //         }
 //     })
-    
+
 // })
 
 // // console.log(data);
