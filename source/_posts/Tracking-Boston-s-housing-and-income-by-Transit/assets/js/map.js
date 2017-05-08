@@ -1,14 +1,5 @@
 var highlightLayer;
-var dispatch = d3.dispatch('stopSelect');
-
-var classify = function(str) {
-    return str.toLowerCase()
-        .replace(/\s+/g, '-')           // Replace spaces with -
-        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
-        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
-        .replace(/^-+/, '')             // Trim - from start of text
-        .replace(/-+$/, '');            // Trim - from end of text
-};
+// var dispatch = d3.dispatch('stopSelect');
 
 var colors = {
     blue: "#007DBE",
@@ -17,17 +8,12 @@ var colors = {
     red: "#D23934"
 };
 
-function highlightFeature(e) {
-    // console.log(e.target);
-    highlightLayer = e.target;
-    dispatch.call('stopSelect', highlightLayer.feature.properties);
-    highlightLayer.openPopup();
-}
-L.ImageOverlay.include({
-    getBounds: function() {
-        return this._bounds;
-    }
-});
+var metrics = {
+    "eighth_mile": {income: "eighth_mic", rent: "eighth_mrc", home: "eighth_mhc"},
+    "300_ft": {income: "medIncCalc", rent: "MedRenCalc", home: "MedHomCalc"}
+};
+
+var sizeByAttr = 'eighth_mhc';
 
 var isMobile = false;
 var isDesktop = false;
@@ -46,18 +32,22 @@ function determineSize() {
     }
 }
 
-determineSize();
+var classify = function(str) {
+    return str.toLowerCase()
+        .replace(/\s+/g, '-')           // Replace spaces with -
+        .replace(/[^\w\-]+/g, '')       // Remove all non-word chars
+        .replace(/\-\-+/g, '-')         // Replace multiple - with single -
+        .replace(/^-+/, '')             // Trim - from start of text
+        .replace(/-+$/, '');            // Trim - from end of text
+};
 
-if ( isMobile ) {
-    d3.selectAll(".hover-instruction").text("Touch");
-}
-if ( isDesktop ) {
-    d3.select("#map").style('height', 600 + 'px');
-}
-if ( isHuge ) {
-    d3.select("#map").style('height', 700 + 'px');
+function highlightFeature(e) {
+    highlightLayer = e.target;
+    // dispatch.call('stopSelect', highlightLayer.feature.properties);
+    highlightLayer.openPopup();
 }
 
+// Polyfill for includes method
 if (!String.prototype.includes) {
   String.prototype.includes = function(search, start) {
     'use strict';
@@ -73,14 +63,29 @@ if (!String.prototype.includes) {
   };
 }
 
+determineSize();
+
+if ( isMobile ) {
+    d3.selectAll(".hover-instruction").text("Touch");
+}
+if ( isDesktop ) {
+    d3.select("#map").style('height', 600 + 'px');
+}
+if ( isHuge ) {
+    d3.select("#map").style('height', 700 + 'px');
+}
+
+L.ImageOverlay.include({
+    getBounds: function() {
+        return this._bounds;
+    }
+});
 
 var center = new L.LatLng(42.3171, -71.1046);
 var map = L.map('map', {
     zoomControl: true,
-    // center: center,
     maxZoom: 16,
     minZoom: 11
-    // zoom: 11
 }).fitBounds([
     [42.40, -71.15],
     [42.30, -70.98]
@@ -99,15 +104,15 @@ basemap0.addTo(map);
 
 function setBounds() {}
 
-function geoJson2heat(geojson, weight) {
-    return geojson.features.map(function(feature) {
-        return [
-            feature.geometry.coordinates[1],
-            feature.geometry.coordinates[0],
-            feature.properties[weight]
-        ];
-    });
-}
+// function geoJson2heat(geojson, weight) {
+//     return geojson.features.map(function(feature) {
+//         return [
+//             feature.geometry.coordinates[1],
+//             feature.geometry.coordinates[0],
+//             feature.properties[weight]
+//         ];
+//     });
+// }
 
 function pop_eighthmile0(feature, layer) {
     // layer.on({
@@ -141,7 +146,7 @@ function style_eighthmile0() {
         weight: 2.0,
         fillOpacity: 1,
         fillColor: 'rgba(0,0,0,0.0)',
-    }
+    };
 }
 map.createPane('pane_eighthmile0');
 map.getPane('pane_eighthmile0').style.zIndex = 400;
@@ -187,7 +192,7 @@ function style_300feet1() {
         weight: 2.0,
         fillOpacity: 1,
         fillColor: 'rgba(0,0,0,0.0)',
-    }
+    };
 }
 map.createPane('pane_300feet1');
 map.getPane('pane_300feet1').style.zIndex = 401;
@@ -332,21 +337,6 @@ function pop_Stops3(feature, layer) {
     });
 }
 
-// var rscale = d3.scaleLinear()
-//     .range([2,20])
-//     .domain(d3.extent(json_Stops3.features, function(d) {
-//         return +d.properties.medIncCalc;
-//     }));
-// var sizeByAttr = 'medIncCalc';
-// var sizeByAttr = 'eighth_mic';
-// var sizeByAttr = 'eighth_mrc';
-
-var metrics = {
-    "eighth_mile": {income: "eighth_mic", rent: "eighth_mrc", home: "eighth_mhc"},
-    "300_ft": {income: "medIncCalc", rent: "MedRenCalc", home: "MedHomCalc"}
-};
-
-var sizeByAttr = 'eighth_mhc';
 json_Stops3.features.sort(function (a,b) { return b.properties[sizeByAttr] - a.properties[sizeByAttr]; });
 
 var rscale = d3.scaleSqrt()
@@ -532,7 +522,6 @@ bounds_group.addLayer(layer_Stops3);
 map.addLayer(layer_Stops3);
 
 function changeMetric(metric) {
-    // console.log(metric);
     sizeByAttr = metric;
 
     rscale.domain([0,d3.max(json_Stops3.features, function(d) {
@@ -541,10 +530,6 @@ function changeMetric(metric) {
 
     json_Stops3.features.sort(function (a,b) { return b.properties[sizeByAttr] - a.properties[sizeByAttr]; });
 
-    // console.log('')
-
-    // bounds_group.removeLayer(layer_Stops3);
-    // console.log(layer_Stops3)
     map.removeLayer(layer_Stops3);
     layer_Stops3 = new L.geoJson(json_Stops3, {
         attribution: '<a href=""></a>',
@@ -693,7 +678,6 @@ else {
     metricControls.addTo(map);
 }
 
-
 setBounds();
 if (map.hasLayer(layer_Stops3)) {
     if (map.getZoom() <= 19 && map.getZoom() >= 10) {
@@ -706,6 +690,7 @@ if (map.hasLayer(layer_Stops3)) {
         });
     }
 }
+
 var searchControl = new L.Control.Search({
     layer: layer_Stops3,
     initial: false,
@@ -727,9 +712,6 @@ map.addControl( searchControl );
 d3.selectAll("#map-controls select").on("change", function() {
     var metric = d3.select("#metric").property("value");
     var buffer = d3.select("#buffer").property("value");
-
-    // console.log(metric);
-    // console.log(buffer);
 
     changeMetric(metrics[buffer][metric]);
 })
