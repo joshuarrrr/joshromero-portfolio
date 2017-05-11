@@ -33,7 +33,7 @@
 	font-size: 12px;
 }
 
-@media (min-width: 690px) {
+@media (min-width: 1024px) {
 	.leaflet-container, .info, .leaflet-container h2, #map-controls {
 		font-size: 14px;
 	}
