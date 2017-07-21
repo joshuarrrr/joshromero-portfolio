@@ -1,5 +1,5 @@
 layout: false
 ---
-I’m a journalist and web developer currently pursuing projects that involve data visualization, structured journalism, qualitative analytics, or digital archives.
+I'm an experienced digital journalist equally comfortable writing code and prose. I love exploring new forms of storytelling through technology.
 
-Check out my [résumé](/resume.html) and get in touch if you're interested in working with me.
+Check out my [résumé](/resume.html) or [portfolio](/portfolio.html) and get in touch if you'd like to work with me.
