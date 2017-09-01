@@ -1,44 +1,101 @@
 layout: false
 ---
 
-##EXPERIENCE
+## Experience
 
-###IEEE Spectrum, December 2007-March 2014
+### Freelance, <span class="date">March 2014-Present</span>
 
-####Senior Interactive Editor
+#### Journalist and Web Developer
 
-- Built interactive stories and trained the editorial, art, and production staff to use new digital tools
-- Worked directly with the web development team to create new features and improve the usability of the website and CMS; built prototypes and detailed requirements
-- Led two website redesign projects; contributed front-end design and development
-- Assigned, edited, and wrote features and news stories
-- Helped plan comprehensive special reports and weekly news coverage
-- Managed and recruited bloggers for five technology blogs; worked with several freelance video producers and writers
-- Shot, edited and produced dozens of videos; started a YouTube channel that has attracted millions of views
-- Previous position: Associate Editor
+- Designing and building interactive data infographics
+- Reporting and writing features, news articles, and blogs
+- Creating and managing custom, responsive WordPress themes
+- Consulting on digital publishing strategy, tools, processes, and analytics
+- Editing technical case studies
 
-*Completed Internships at IEEE Spectrum and Science Friday (NPR)*
+### IEEE Spectrum <span class="date">December 2007-March 2014</span>
 
-##EDUCATION
+#### Senior Interactive Editor
+A global technology magazine for more than 450,000 engineers and technologists
 
-**M.A., Journalism** (Science, Health, & Environment Reporting Program)
-December 2007, NEW YORK UNIVERSITY
+- Led product development of website, CMS, and digital workflow tools
+- Managed two website redesign projects, contributing wireframes, design, and code
+- Assigned, edited, reported, and wrote features and news stories
+- Designed long-form digital layouts and comprehensive special reports
+- Managed, recruited, and trained freelance bloggers for five technology blogs
+- Shot, edited and produced videos; started YouTube channel with +30 million views
+- Integrated new storytelling tools trained the editorial, art, and production staff to use them
 
-**B.S., Astronomy and Physics**
-December 2005, UNIVERSITY OF ARIZONA (with Honors, Cum Laude)
+## Education
 
-##SKILLS
+### M.A., Journalism
+(Science, Health, & Environment Reporting Program)
+December 2007, New York University
+*Completed Internships at *IEEE Spectrum* and *Science Friday* (NPR)*
 
-###Multimedia Production:
-Experience shooting video, still photos, recording radio-quality audio
+### B.S., Astronomy and Physics
+December 2005, University of Arizona (with Honors, Cum Laude)
 
-Proficient with Final Cut, SoundSlides, ProTools, Photoshop, Hype, and other software
+## Skills 
+{% raw %}
+<div class="skills">
+{% endraw %}
+### Development Languages and Libraries:
 
-###Web Technology and tools:
-Proficient writing HTML, CSS (& LESS, etc.), JavaScript (& jQuery, D3, etc.), Flash, Ruby, Python, SQL, Git
+- JavaScript
+	- D3
+	- Leaflet
+	- jQuery
+	- Backbone
+- CSS
+	- SASS
+	- LESS
+- HTML
 
-##AWARDS/MEMBERSHIPS
 
-**American Business Media’s Neal Awards** (highlights): 
+- Python
+	- Django
+	- pandas
+	- NLTK
+- Ruby
+	- Rails
+	- Sinatra
+	- Jekyll
+- PHP
+	- Wordpress
+- Node.js
+
+### Development Tools:
+
+- Bash
+- Git
+- Grunt
+- Gulp
+- AWS
+
+### Mapping:
+
+- QGIS
+- ArcGIS
+- Leaflet
+
+### Multimedia Production:
+
+- Experience shooting video, photos, producing radio-quality audio
+	- Final Cut
+	- Photoshop
+	- Pro Tools
+- Creating designs, mock-ups, and wireframes
+	- Adobe Creative Suite
+
+{% raw %}
+</div>
+{% endraw %}
+
+## Awards
+
+### American Business Media’s [Neal Awards](href:http://www.abmassociation.com/abm/Neal_Awards2.asp) (highlights): 
+- Best Infographics (2016)
 - Best Cross-Platform Package (2014)
 - Best Theme Issue (2014, 2010) 
 - Best Use of Mobile (2013)
@@ -46,12 +103,12 @@ Proficient writing HTML, CSS (& LESS, etc.), JavaScript (& jQuery, D3, etc.), Fl
 - Best Website (2011, 2010)
 - Grand Neal Award (2010)
 
-**ASBPE Awards of Excellence**, Gold: 
+### [National Magazine Award](href:http://www.magazine.org/asme/national-magazine-awards): 
+- General Excellence Among Thought Leader Magazines (2012)
+
+### ASBPE [Awards of Excellence](href:http://www.asbpe.org/azbee-awards/), Gold: 
 - Web Site Design (2014)
 - Landing Page Design (2014)
 
-**TABPI Tabby Award**, Gold: Best b2b Website (2014)
-
-**National Magazine Award**: General Excellence Among Thought Leader Magazines (2012)
-
-**Member:** Online News Association, Investigative Reporters and Editors
+### TABPI [Tabby Award](href:http://www.tabpi.org/awards.htm), Gold:
+- Best b2b Website (2014)

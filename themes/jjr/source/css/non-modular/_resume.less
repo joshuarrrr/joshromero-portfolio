@@ -1,8 +1,66 @@
 /* resume styling */
+
+.contact {
+  text-align: center;
+
+  h1 {
+  	border-bottom: 1px solid @line-color-2;
+  	font-weight: normal;
+  }
+}
+
+.resume h2 {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin: 2.35em 0 0;
+}
+
 .resume h3 {
   text-align: left;
   font-size: 1.2em;
+  margin: 1.4rem 0 0;
 }
 .resume h5 {
   font-size: 1em;
+}
+
+.resume p {
+  margin-bottom: 0;
+}
+
+@media (min-width: 690px) {
+  .resume {
+    margin-left: 15rem;
+  }
+  .resume h2 {
+    margin: 3rem 0 -1.5rem 0;
+    position: relative;
+    height: 0;
+    text-transform: uppercase;
+    text-align: right;
+    width: 0;
+    left: -15rem;
+  }
+
+  .resume .skills>ul {
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    margin: .4em 0 1.4em -2em;
+
+    &>li {
+      list-style-type: none;
+      margin-left: 2em;
+      font-weight: bold;
+      flex: 1 0 10%;
+    }
+
+    & ul {
+      font-weight: normal;
+    }
+  }
 }
